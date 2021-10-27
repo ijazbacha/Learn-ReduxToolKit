@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import {View, Text, StyleSheet, Button} from 'react-native';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement, reset, incrementByAmount } from "./counterSlice";
 
 
 const Counter = () => {
@@ -13,14 +14,16 @@ const Counter = () => {
 
     const count = useSelector((state) => state.counter.count)
 
-    // const Reset = () => count
+    const dispatch = useDispatch()
+
 
     return(
         <View style={styles.counterContainer}>
             <Text style={styles.title}>{count}</Text>
-            {/* <Button title="+" color="green" onPress={ } /> */}
-            {/* <Button title="-" color="red" onPress={ } /> */}
-            <Button title="Reset"  onPress={() => Reset()} />
+            <Button title="+" color="green" onPress={ () =>  {dispatch(increment())} } />
+            <Button title="-" color="red" onPress={ () =>  {dispatch(decrement())} } />
+            <Button title="incrementBy 10" color="gray" onPress={ () =>  {dispatch(incrementByAmount(10))} } />
+            <Button title="Reset"  onPress={ () => { dispatch(reset()) }} />
         </View>
     )
 }
