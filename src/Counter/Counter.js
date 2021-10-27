@@ -1,22 +1,25 @@
 import React from "react";
 import { useState } from "react";
 import {View, Text, StyleSheet, Button} from 'react-native';
+import { useSelector } from "react-redux";
 
 
 const Counter = () => {
-    const [count, setCount] = useState(0)
+    // const [count, setCount] = useState(0)
 
-    const Increase = () => setCount(count+1)
+    // const Increase = () => setCount(count+1)
 
-    const Decrease = () => setCount(count-1)
+    // const Decrease = () => setCount(count-1)
 
-    const Reset = () => setCount(0)
+    const count = useSelector((state) => state.counter.count)
+
+    // const Reset = () => count
 
     return(
         <View style={styles.counterContainer}>
             <Text style={styles.title}>{count}</Text>
-            <Button title="+" color="green" onPress={() => Increase()} />
-            <Button title="-" color="red" onPress={() => Decrease()} />
+            {/* <Button title="+" color="green" onPress={ } /> */}
+            {/* <Button title="-" color="red" onPress={ } /> */}
             <Button title="Reset"  onPress={() => Reset()} />
         </View>
     )
